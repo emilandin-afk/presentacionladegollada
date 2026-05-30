@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Degollada de la Rambla Wilson — 1923</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+DW+Pica&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1208;
+    --ink-faded: #3d2f1a;
+    --paper: #f2e8d5;
+    --paper-dark: #e8d9bb;
+    --paper-aged: #d4c49a;
+    --paper-stain: #c9b48a;
+    --red-blood: #7a1c1c;
+    --red-accent: #9b2c2c;
+    --sepia: #6b4c2a;
+    --sepia-light: #a07850;
+    --border-thin: 1px solid #8a6a3a;
+    --border-thick: 3px solid #5a3a1a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IM Fell English', 'Georgia', serif;
+    background: #1a1208;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* SLIDE SYSTEM */
+  .slides-wrapper {
+    width: 100%;
+  }
+
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-inner {
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* PAPER TEXTURE BASE */
+  .paper {
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at 20% 80%, rgba(180,140,80,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(160,120,60,0.10) 0%, transparent 50%);
+  }
+
+  /* SLIDE BACKGROUNDS */
+  .slide-cover { background: #0f0a04; }
+  .slide-paper { background: #1a1208; }
+
+  /* ===== SLIDE 0: COVER ===== */
+  .cover-frame {
+    border: 2px solid #5a3a1a;
+    padding: 8px;
+    position: relative;
+  }
+  .cover-frame::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid #3a2010;
+    pointer-events: none;
+  }
+  .cover-inner {
+    background: var(--paper);
+    background-image: radial-gradient(ellipse at 30% 70%, rgba(180,140,80,0.2) 0%, transparent 60%);
+    padding: 60px 50px;
+    text-align: center;
+    position: relative;
+  }
+  .cover-masthead {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: clamp(28px, 5vw, 52px);
+    color: var(--ink);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+  .cover-sub-masthead {
+    font-family: 'IM Fell English', serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--sepia);
+    margin-bottom: 20px;
+  }
+  .cover-rule-dbl {
+    border: none;
+    border-top: 3px double var(--ink);
+    margin: 16px 0;
+  }
+  .cover-rule-thin {
+    border: none;
+    border-top: 1px solid var(--ink-faded);
+    margin: 10px 0;
+  }
+  .cover-date {
+    font-family: 'IM Fell English', serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--sepia);
+    margin-bottom: 30px;
+  }
+  .cover-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 7vw, 80px);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+  .cover-headline-red {
+    color: var(--red-blood);
+  }
+  .cover-deck {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(14px, 2.2vw, 20px);
+    color: var(--ink-faded);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 16px auto 0;
+  }
+  .cover-ornament {
+    font-size: 28px;
+    color: var(--sepia-light);
+    margin: 20px 0 10px;
+    letter-spacing: 8px;
+  }
+  .cover-byline {
+    font-family: 'IM Fell English', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sepia);
+    margin-top: 30px;
+  }
+  .cover-bleed {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--red-blood);
+  }
+
+  /* ===== NEWSPAPER ARTICLE SLIDES ===== */
+  .newspaper {
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at 15% 85%, rgba(160,120,60,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 15%, rgba(140,100,50,0.10) 0%, transparent 45%);
+    border: 1px solid #8a6a3a;
+    padding: 40px;
+    position: relative;
+    box-shadow: inset 0 0 60px rgba(100,70,30,0.08);
+  }
+
+  .newspaper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 23px,
+      rgba(139,109,56,0.05) 23px,
+      rgba(139,109,56,0.05) 24px
+    );
+    pointer-events: none;
+  }
+
+  .section-tag {
+    font-family: 'IM Fell English', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--sepia-light);
+    border-bottom: 1px solid var(--sepia-light);
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
+  .article-number {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 64px;
+    color: rgba(90,58,26,0.12);
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    line-height: 1;
+  }
+
+  .article-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4.5vw, 52px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .article-headline-red {
+    color: var(--red-blood);
+  }
+
+  .article-subhead {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--ink-faded);
+    margin-bottom: 16px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  .article-rule { border: none; border-top: 2px solid var(--ink); margin: 14px 0 4px; }
+  .article-rule-thin { border: none; border-top: 1px solid var(--ink-faded); margin: 6px 0 14px; }
+
+  .article-dateline {
+    font-family: 'IM Fell English', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sepia);
+    margin-bottom: 16px;
+  }
+
+  .article-body {
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-faded);
+  }
+
+  .article-body p { margin-bottom: 12px; }
+
+  .article-body .dropcap::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 5em;
+    font-weight: 900;
+    float: left;
+    line-height: 0.75;
+    margin: 4px 8px 0 0;
+    color: var(--ink);
+  }
+
+  /* COLUMNS */
+  .col-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .col-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .col-span-2 { grid-column: 1 / -1; }
+
+  .col-divider {
+    border: none;
+    border-left: 1px solid var(--paper-stain);
+    margin: 0;
+  }
+
+  /* PULLQUOTE */
+  .pullquote {
+    border-top: 3px double var(--ink);
+    border-bottom: 3px double var(--ink);
+    padding: 16px 0;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--ink);
+    line-height: 1.4;
+    margin: 0;
+  }
+  .pullquote cite {
+    font-family: 'IM Fell English', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sepia);
+    display: block;
+    margin-top: 8px;
+  }
+
+  /* PHOTO BOXES */
+  .photo-box {
+    background: var(--paper-dark);
+    border: 1px solid var(--paper-stain);
+    padding: 8px 8px 20px;
+    text-align: center;
+  }
+  .photo-box .photo-area {
+    background: var(--paper-aged);
+    background-image:
+      radial-gradient(ellipse at 40% 40%, rgba(200,170,110,0.3) 0%, transparent 70%),
+      radial-gradient(ellipse at 70% 70%, rgba(120,80,40,0.2) 0%, transparent 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-box .photo-area::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+  }
+  .photo-box .photo-caption {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: var(--sepia);
+    line-height: 1.4;
+  }
+
+  /* SVG ILLUSTRATIONS */
+  .scene-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--ink-faded);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .timeline-item::before {
+    content: '◆';
+    position: absolute;
+    left: -33px;
+    top: 2px;
+    font-size: 9px;
+    color: var(--red-blood);
+    width: 10px;
+    text-align: center;
+  }
+  .timeline-date {
+    font-family: 'IM Fell English', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red-blood);
+    margin-bottom: 2px;
+  }
+  .timeline-text {
+    font-family: 'IM Fell English', serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-faded);
+  }
+
+  /* EVIDENCE BOX */
+  .evidence-box {
+    background: var(--paper-dark);
+    border: 1px solid var(--paper-stain);
+    border-left: 4px solid var(--red-blood);
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .evidence-label {
+    font-family: 'IM Fell English', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red-blood);
+    margin-bottom: 6px;
+  }
+  .evidence-text {
+    font-family: 'IM Fell English', serif;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* CHARACTER CARDS */
+  .char-card {
+    background: var(--paper-dark);
+    border: 1px solid var(--paper-stain);
+    padding: 16px;
+    position: relative;
+  }
+  .char-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .char-card-role {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--red-blood);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .char-card-text {
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    color: var(--ink-faded);
+    line-height: 1.6;
+  }
+  .char-initial {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--sepia-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 20px;
+    color: var(--sepia);
+  }
+
+  /* FINAL SLIDE */
+  .final-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(20px, 3.5vw, 36px);
+    color: var(--paper-aged);
+    line-height: 1.4;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .final-rule {
+    border: none;
+    border-top: 1px solid rgba(210,180,120,0.3);
+    margin: 30px auto;
+    max-width: 200px;
+  }
+  .final-sub {
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sepia-light);
+    text-align: center;
+  }
+
+  /* SLIDE NAVIGATION */
+  .nav-dots {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(210,180,120,0.3);
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .nav-dot.active, .nav-dot:hover {
+    background: var(--sepia-light);
+    transform: scale(1.4);
+  }
+
+  /* SLIDE NUMBERS */
+  .slide-num {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    font-family: 'IM Fell English', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--sepia-light);
+    opacity: 0.6;
+  }
+
+  /* DECORATIVE */
+  .ornament-border {
+    text-align: center;
+    font-family: 'IM Fell English', serif;
+    color: var(--sepia-light);
+    font-size: 18px;
+    letter-spacing: 12px;
+    margin: 8px 0;
+  }
+
+  .stain {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(120,80,30,0.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  /* DARK SLIDE */
+  .dark-slide-content {
+    position: relative;
+    z-index: 2;
+  }
+  .dark-slide-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(90,40,20,0.3) 0%, transparent 70%);
+  }
+
+  @media (max-width: 600px) {
+    .col-2, .col-3 { grid-template-columns: 1fr; }
+    .slide { padding: 40px 20px; }
+    .newspaper { padding: 24px 20px; }
+    .nav-dots { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav-dots" aria-label="Navegación de diapositivas">
+  <button class="nav-dot active" onclick="scrollToSlide(0)" title="Portada"></button>
+  <button class="nav-dot" onclick="scrollToSlide(1)" title="Contexto"></button>
+  <button class="nav-dot" onclick="scrollToSlide(2)" title="El Hallazgo"></button>
+  <button class="nav-dot" onclick="scrollToSlide(3)" title="El Enigma"></button>
+  <button class="nav-dot" onclick="scrollToSlide(4)" title="La Muñeca"></button>
+  <button class="nav-dot" onclick="scrollToSlide(5)" title="Los Personajes"></button>
+  <button class="nav-dot" onclick="scrollToSlide(6)" title="El Crimen"></button>
+  <button class="nav-dot" onclick="scrollToSlide(7)" title="La Fuga"></button>
+  <button class="nav-dot" onclick="scrollToSlide(8)" title="El Regreso"></button>
+  <button class="nav-dot" onclick="scrollToSlide(9)" title="El Epílogo"></button>
+  <button class="nav-dot" onclick="scrollToSlide(10)" title="Reflexión"></button>
+</nav>
+
+<div class="slides-wrapper" id="slides">
+
+  <!-- ===== SLIDE 0: PORTADA ===== -->
+  <section class="slide slide-cover" id="slide-0">
+    <div class="slide-inner" style="max-width:780px;">
+      <div class="cover-frame">
+        <div class="cover-inner">
+          <div class="stain" style="width:200px;height:200px;top:-40px;left:-60px;"></div>
+          <div class="stain" style="width:150px;height:150px;bottom:-30px;right:-40px;"></div>
+
+          <div class="cover-masthead">El Pueblo de Montevideo</div>
+          <div class="cover-sub-masthead">Diario de la Mañana — Fundado en 1878</div>
+          <hr class="cover-rule-dbl">
+          <div class="cover-date">Sábado, 28 de Abril de 1923 — Año XLV — Nro. 14.287</div>
+
+          <div class="ornament-border">✦ ✦ ✦</div>
+
+          <div class="cover-headline">La <span class="cover-headline-red">Degollada</span><br>de la Rambla<br>Wilson</div>
+
+          <div class="ornament-border" style="font-size:14px;letter-spacing:6px;margin:16px 0 8px;">— ✦ —</div>
+
+          <div class="cover-deck">El misterio que paralizó a Montevideo entero:<br>una mujer muerta, sin nombre, sin pasado,<br>y un detective que resolvió lo imposible con cera.</div>
+
+          <hr class="cover-rule-dbl" style="margin-top:24px;">
+          <div class="cover-byline">Montevideo, Uruguay · Abril–Julio 1923</div>
+          <div class="cover-bleed"></div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">I</span>
+  </section>
+
+  <!-- ===== SLIDE 1: CONTEXTO ===== -->
+  <section class="slide slide-paper" id="slide-1">
+    <div class="slide-inner">
+      <div class="newspaper">
+        <div class="stain" style="width:180px;height:180px;top:20px;right:30px;"></div>
+        <div class="article-number">I</div>
+        <div class="section-tag">Contexto Histórico</div>
+        <h2 class="article-headline">El Uruguay de 1923:<br>Un País en Transformación</h2>
+        <hr class="article-rule">
+        <hr class="article-rule-thin">
+        <div class="article-dateline">Montevideo — Año de Nuestro Señor de 1923</div>
+
+        <div class="col-2">
+          <div class="article-body">
+            <p class="dropcap">EN el año en que ocurrieron estos hechos, la ciudad de Montevideo contaba apenas con unas <strong>350.000 almas</strong> y se encontraba en plena transformación. La estatua ecuestre de Artigas acababa de inaugurarse, el Palacio Salvo comenzaba su construcción, y la prensa escrita era el único canal de información masiva.</p>
+            <p>Era el Uruguay batllista: leyes laborales modernas, educación laica gratuita, separación de la Iglesia y el Estado. Una nación que se presentaba ante el mundo como la "Suiza de América".</p>
+            <p>Sin embargo, bajo esa modernidad, existía una clase trabajadora invisible: inmigrantes sin redes de protección, mujeres sin voz pública, crímenes que podían archivarse sin resolver porque sus víctimas no tenían quien los reclamara.</p>
+          </div>
+          <div>
+            <div class="photo-box" style="margin-bottom:16px;">
+              <div class="photo-area" style="height:140px;">
+                <svg class="scene-svg" viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Skyline Montevideo 1923 -->
+                  <rect width="300" height="130" fill="#d4c49a"/>
+                  <!-- sky gradient suggestion -->
+                  <rect width="300" height="60" fill="#c9b48a" opacity="0.4"/>
+                  <!-- Water -->
+                  <rect y="90" width="300" height="40" fill="#a89060" opacity="0.5"/>
+                  <path d="M0 92 Q30 89 60 92 Q90 95 120 91 Q150 88 180 92 Q210 95 240 91 Q270 88 300 92 L300 130 L0 130Z" fill="#8a7248" opacity="0.3"/>
+                  <!-- Buildings -->
+                  <rect x="20" y="50" width="18" height="42" fill="#8a7248" opacity="0.7"/>
+                  <rect x="22" y="44" width="14" height="8" fill="#7a6238"/>
+                  <rect x="48" y="38" width="22" height="54" fill="#7a6238" opacity="0.8"/>
+                  <rect x="52" y="28" width="14" height="12" fill="#6a5228"/>
+                  <polygon points="59,18 66,28 52,28" fill="#5a4218"/>
+                  <!-- Palacio Salvo suggestion -->
+                  <rect x="130" y="30" width="28" height="62" fill="#8a7248" opacity="0.8"/>
+                  <rect x="136" y="20" width="16" height="12" fill="#7a6238"/>
+                  <rect x="139" y="10" width="10" height="12" fill="#6a5228"/>
+                  <rect x="141" y="4" width="6" height="8" fill="#5a4218"/>
+                  <rect x="82" y="55" width="16" height="37" fill="#9a8258" opacity="0.6"/>
+                  <rect x="105" y="48" width="20" height="44" fill="#8a7248" opacity="0.7"/>
+                  <rect x="168" y="62" width="14" height="30" fill="#7a6238" opacity="0.6"/>
+                  <rect x="190" y="45" width="20" height="47" fill="#8a7248" opacity="0.7"/>
+                  <rect x="215" y="58" width="16" height="34" fill="#9a8258" opacity="0.6"/>
+                  <rect x="240" y="50" width="18" height="42" fill="#8a7248" opacity="0.7"/>
+                  <rect x="262" y="60" width="14" height="32" fill="#7a6238" opacity="0.6"/>
+                  <!-- Rambla line -->
+                  <line x1="0" y1="90" x2="300" y2="90" stroke="#5a3a1a" stroke-width="1" opacity="0.5"/>
+                  <!-- Caption area -->
+                </svg>
+              </div>
+              <div class="photo-caption">Horizonte de Montevideo, circa 1923.<br>El Palacio Salvo aún en construcción.</div>
+            </div>
+            <div class="evidence-box">
+              <div class="evidence-label">Datos del Contexto</div>
+              <div class="evidence-text">
+                • Población: ~350.000 habitantes<br>
+                • Sin TV · Radio incipiente<br>
+                • Prensa escrita: único medio masivo<br>
+                • Inmigración europea intensa<br>
+                • Forenses primitivos · Sin ADN<br>
+                • Huellas dactilares: sin sistematizar
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">II</span>
+  </section>
+
+  <!-- ===== SLIDE 2: EL HALLAZGO ===== -->
+  <section class="slide slide-paper" id="slide-2">
+    <div class="slide-inner">
+      <div class="newspaper">
+        <div class="stain" style="width:220px;height:220px;bottom:-30px;left:20px;"></div>
+        <div class="article-number">II</div>
+        <div class="section-tag">El Hallazgo — 28 de Abril, 1923</div>
+        <h2 class="article-headline"><span class="article-headline-red">Una Mujer Degollada</span><br>en las Rocas de la Rambla</h2>
+        <hr class="article-rule">
+        <hr class="article-rule-thin">
+        <div class="article-dateline">Rambla Wilson, frente al Parque Rodó — Domingo por la mañana</div>
+
+        <div class="col-2">
+          <div>
+            <div class="photo-box" style="margin-bottom:16px;">
+              <div class="photo-area" style="height:180px;">
+                <svg class="scene-svg" viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="300" height="170" fill="#c9b48a"/>
+                  <!-- Cielo -->
+                  <rect width="300" height="70" fill="#b8a47a" opacity="0.6"/>
+                  <!-- Mar -->
+                  <rect y="100" width="300" height="70" fill="#9a8060" opacity="0.4"/>
+                  <path d="M0 102 Q25 98 50 102 Q75 106 100 101 Q125 97 150 102 Q175 106 200 100 Q225 96 250 101 Q275 105 300 100 L300 170 L0 170Z" fill="#8a7050" opacity="0.4"/>
+                  <!-- Rambla / rocks -->
+                  <ellipse cx="60" cy="105" rx="30" ry="12" fill="#7a6040" opacity="0.7"/>
+                  <ellipse cx="110" cy="108" rx="22" ry="9" fill="#6a5030" opacity="0.8"/>
+                  <ellipse cx="155" cy="104" rx="35" ry="14" fill="#7a6040" opacity="0.6"/>
+                  <ellipse cx="220" cy="107" rx="25" ry="10" fill="#6a5030" opacity="0.7"/>
+                  <!-- Figura en las rocas -->
+                  <ellipse cx="148" cy="103" rx="28" ry="10" fill="#5a4020" opacity="0.5"/>
+                  <!-- Silueta cuerpo tendido -->
+                  <ellipse cx="148" cy="101" rx="10" ry="6" fill="#3a2810" opacity="0.7"/>
+                  <rect x="140" y="98" width="30" height="6" rx="3" fill="#3a2810" opacity="0.6"/>
+                  <ellipse cx="167" cy="101" rx="8" ry="4" fill="#2a1a08" opacity="0.5"/>
+                  <!-- Cruz/marca -->
+                  <line x1="145" y1="96" x2="150" y2="106" stroke="#7a1c1c" stroke-width="1.5" opacity="0.7"/>
+                  <!-- Hombre descubriendo -->
+                  <circle cx="195" cy="88" r="7" fill="#5a4020" opacity="0.6"/>
+                  <rect x="191" y="95" width="8" height="16" rx="2" fill="#4a3010" opacity="0.6"/>
+                  <line x1="195" y1="103" x2="190" y2="115" stroke="#4a3010" stroke-width="2" opacity="0.5"/>
+                  <line x1="195" y1="103" x2="200" y2="115" stroke="#4a3010" stroke-width="2" opacity="0.5"/>
+                  <!-- Mástil / Rambla -->
+                  <line x1="0" y1="90" x2="300" y2="90" stroke="#5a3a1a" stroke-width="2" opacity="0.3"/>
+                  <path d="M0 88 Q50 84 100 88 Q150 92 200 87 Q250 83 300 88 L300 92 L0 92Z" fill="#6a4a2a" opacity="0.2"/>
+                  <!-- Shadow/mood -->
+                  <rect width="300" height="170" fill="rgba(50,20,5,0.1)"/>
+                </svg>
+              </div>
+              <div class="photo-caption">Las rocas de la Rambla Wilson, frente al Parque Rodó,<br>escenario del macabro hallazgo.</div>
+            </div>
+          </div>
+          <div class="article-body">
+            <p class="dropcap">UN TRANSEÚNTE que caminaba aquella mañana del domingo por la Rambla Wilson encontró entre las rocas, frente a las canteras del Parque Rodó, el cadáver de una mujer.</p>
+            <p>Había sido golpeada repetidamente en la cabeza. Y luego degollada. El tajo en la garganta medía más de <strong>diez centímetros de lado a lado</strong>.</p>
+            <p>No tenía documentos. No había denuncia de desaparición. Nadie la buscaba. Nadie preguntaba por ella.</p>
+            <p>La Policía trasladó el cuerpo a la morgue. Y allí comenzaría la parte más perturbadora de la historia: <em>el cuerpo llevaría 38 días sin tener nombre.</em></p>
+            <div class="pullquote">
+              <p>"La víctima había caído del cielo como un meteorito para quedar inmóvil entre las rocas de la rambla montevideana."</p>
+              <cite>— El País, Mayo 1923</cite>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">III</span>
+  </section>
+
+  <!-- ===== SLIDE 3: EL ENIGMA ===== -->
+  <section class="slide slide-paper" id="slide-3">
+    <div class="slide-inner">
+      <div class="newspaper">
+        <div class="article-number">III</div>
+        <div class="section-tag">El Enigma — Mayo 1923</div>
+        <h2 class="article-headline">38 Días Sin Nombre:<br><span class="article-headline-red">El Misterio Más Grande</span><br>de Montevideo</h2>
+        <hr class="article-rule">
+        <hr class="article-rule-thin">
+        <div class="article-dateline">Morgue de Montevideo — Días 1 al 38</div>
+
+        <div class="col-2">
+          <div class="article-body">
+            <p class="dropcap">EL CUERPO fue lavado y vestido y quedó expuesto en la morgue. Una multitud silenciosa y curiosa desfiló ante ella. Nadie la reconocía. El cadáver comenzó a descomponerse.</p>
+            <p>El 5 de mayo, <em>El País</em> publicó la primera nota: "La misteriosa tragedia de la Rambla Wilson". Incluyó fotografía del cadáver en la morgue junto a... una crónica social sobre la Princesa de Borbón pasando por Buenos Aires. Así era el periodismo de la época.</p>
+            <p>El comisario <strong>Tácito Herrera</strong>, jefe de Investigaciones, enfrentaba el problema central: <em>sin saber quién era la víctima, la investigación no podía avanzar.</em></p>
+            <p>Sus agentes recorrieron hospitales, pensiones, comisarías de barrio. Nada. Los diarios, con humor negro, escribían sobre "los majestuosos bigotes del comisario que perdían su línea de mosquetero tras cada pista infructuosa".</p>
+          </div>
+          <div>
+            <div class="evidence-box" style="margin-bottom:14px;">
+              <div class="evidence-label">Informe Policial — Características de la víctima</div>
+              <div class="evidence-text">
+                Sexo femenino · Edad estimada: 22–24 años<br>
+                Tez trigueña clara · Cabello castaño claro<br>
+                Nacida en Argentina<br>
+                Estatura mediana · Constitución delgada<br>
+                <em>Identidad: desconocida</em>
+              </div>
+            </div>
+            <div class="evidence-box">
+              <div class="evidence-label">El Problema Central</div>
+              <div class="evidence-text">
+                Sin documentos · Sin denuncia de desaparición<br>
+                Sin familiares que la buscaran en Uruguay<br>
+                Sin testigos del crimen<br>
+                Sin armas recuperadas<br>
+                Sin sospechosos<br>
+                <strong>Sin nombre.</strong>
+              </div>
+            </div>
+            <div class="pullquote" style="margin-top:16px;">
+              <p>"¿Quién es la degollada de la Rambla Wilson?"</p>
+              <cite>— Titular de El País, 5 de mayo de 1923</cite>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">IV</span>
+  </section>
+
+  <!-- ===== SLIDE 4: LA MUÑECA DE CERA ===== -->
+  <section class="slide slide-paper" id="slide-4">
+    <div class="slide-inner">
+      <div class="newspaper">
+        <div class="stain" style="width:200px;height:200px;top:-20px;right:-20px;"></div>
+        <div class="article-number">IV</div>
+        <div class="section-tag">La Solución Genial</div>
+        <h2 class="article-headline">La <span class="article-headline-red">Muñeca de Cera</span>:<br>Un Método Sin Precedentes</h2>
+        <hr class="article-rule">
+        <hr class="article-rule-thin">
+        <div class="article-dateline">Centro de Montevideo — Mayo-Junio 1923</div>
+
+        <div class="col-2">
+          <div>
+            <div class="photo-box" style="margin-bottom:16px;">
+              <div class="photo-area" style="height:200px;">
+                <svg class="scene-svg" viewBox="0 0 280 190" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="280" height="190" fill="#c9b48a"/>
+                  <!-- Vidriera de negocio -->
+                  <rect x="20" y="20" width="240" height="150" rx="2" fill="#d4c49a" stroke="#6a4a2a" stroke-width="2"/>
+                  <!-- Marco vidriera -->
+                  <rect x="20" y="20" width="240" height="20" fill="#5a3a1a"/>
+                  <text x="140" y="34" text-anchor="middle" font-family="serif" font-size="10" fill="#d4c49a" letter-spacing="2">ESTABLECIMIENTO CENTRAL</text>
+                  <!-- Vidrio con reflejo -->
+                  <rect x="24" y="44" width="232" height="122" fill="#b8a47a" opacity="0.5"/>
+                  <line x1="24" y1="44" x2="50" y2="80" stroke="white" stroke-width="1" opacity="0.3"/>
+                  <!-- Maniquí de cera en vitrina -->
+                  <!-- Base -->
+                  <rect x="108" y="140" width="64" height="6" rx="1" fill="#7a5a2a" opacity="0.8"/>
+                  <!-- Cuerpo -->
+                  <rect x="124" y="90" width="32" height="52" rx="4" fill="#d4b880" opacity="0.9"/>
+                  <!-- Cabeza -->
+                  <ellipse cx="140" cy="82" rx="18" ry="22" fill="#d4b880" opacity="0.95"/>
+                  <!-- Rasgos cara -->
+                  <ellipse cx="133" cy="78" rx="4" ry="5" fill="#c4a870" opacity="0.7"/>
+                  <ellipse cx="147" cy="78" rx="4" ry="5" fill="#c4a870" opacity="0.7"/>
+                  <path d="M133 88 Q140 93 147 88" stroke="#8a6040" stroke-width="1.5" fill="none" opacity="0.5"/>
+                  <!-- Cabello -->
+                  <path d="M122 70 Q130 55 140 58 Q150 55 158 70" stroke="#8a6040" stroke-width="3" fill="none" opacity="0.6"/>
+                  <!-- Ropa vestido -->
+                  <path d="M120 92 Q124 90 140 90 Q156 90 160 92 L164 146 L116 146Z" fill="#8a6a3a" opacity="0.7"/>
+                  <!-- Multitud de siluetas afuera -->
+                  <!-- Personas mirando -->
+                  <g opacity="0.5">
+                    <circle cx="40" cy="155" r="7" fill="#5a3a1a"/>
+                    <rect x="35" y="162" width="10" height="18" rx="1" fill="#4a2a10"/>
+                    <circle cx="58" cy="150" r="8" fill="#4a3010"/>
+                    <rect x="53" y="158" width="10" height="20" rx="1" fill="#3a2008"/>
+                    <circle cx="77" cy="155" r="6" fill="#5a3a1a"/>
+                    <rect x="73" y="161" width="9" height="17" rx="1" fill="#4a2a10"/>
+                    <circle cx="200" cy="152" r="7" fill="#5a3a1a"/>
+                    <rect x="195" y="159" width="10" height="19" rx="1" fill="#4a2a10"/>
+                    <circle cx="220" cy="155" r="8" fill="#4a3010"/>
+                    <rect x="215" y="163" width="10" height="17" rx="1" fill="#3a2008"/>
+                    <circle cx="242" cy="150" r="6" fill="#5a3a1a"/>
+                    <rect x="238" y="156" width="9" height="22" rx="1" fill="#4a2a10"/>
+                  </g>
+                  <!-- Letrero -->
+                  <rect x="60" y="160" width="160" height="18" rx="1" fill="#5a3a1a" opacity="0.8"/>
+                  <text x="140" y="172" text-anchor="middle" font-family="serif" font-style="italic" font-size="8" fill="#d4b880" letter-spacing="1">¿La reconoce Ud.?  Colabore con la Justicia</text>
+                </svg>
+              </div>
+              <div class="photo-caption">Multitudes frente a la vidriera donde fue expuesta<br>la muñeca de cera con el rostro de la víctima.<br><em>Reproducción de Mundo Uruguayo, 1923.</em></div>
+            </div>
+          </div>
+          <div class="article-body">
+            <p class="dropcap">ANTE la imposibilidad de identificar el cadáver por medios convencionales, y con la descomposición avanzando, el comisario Herrera tomó una decisión sin precedentes en la historia policial uruguaya:</p>
+            <p>Ordenó la confección de una <strong>muñeca y máscara de cera</strong> con el rostro exacto de la víctima. La figura fue vestida con las ropas originales de la muerta y colocada en la vidriera de un comercio céntrico de Montevideo.</p>
+            <p><em>Toda la ciudad pasó frente a esa figura inmóvil.</em> La escena, entre lo policial y lo teatral, tenía un objetivo concreto: que alguien reconociera a la víctima.</p>
+            <div class="evidence-box">
+              <div class="evidence-label">El Momento Decisivo</div>
+              <div class="evidence-text">Un <strong>matrimonio</strong> reconoció la ropa de la muñeca. Era ropa de su exempleada doméstica. La mujer sin nombre pasó a ser <strong>Petrona López Hormaeche</strong>, nacida en Argentina.</div>
+            </div>
+            <p style="margin-top:14px;">La estrategia —artesanal, teatral, completamente improvisada— fue el primer método de identificación tridimensional de víctima no identificada en la historia policial uruguaya.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">V</span>
+  </section>
+
+  <!-- ===== SLIDE 5: LOS PERSONAJES ===== -->
+  <section class="slide slide-paper" id="slide-5">
+    <div class="slide-inner">
+      <div class="newspaper">
+        <div class="article-number">V</div>
+        <div class="section-tag">Los Protagonistas</div>
+        <h2 class="article-headline">Los Actores del Drama</h2>
+        <hr class="article-rule">
+        <hr class="article-rule-thin">
+
+        <div class="col-3" style="margin-top:16px;">
+          <div class="char-card">
+            <div class="char-initial">P</div>
+            <div class="char-card-name">Petrona López Hormaeche</div>
+            <div class="char-card-role">La Víctima</div>
+            <div class="char-card-text">Empleada doméstica, argentina, 22–24 años. Vivía en Montevideo sin red social visible. Su invisibilidad social fue la razón por la que nadie la buscó durante 38 días. El crimen fue cometido por quien debería haberla protegido.</div>
+          </div>
+          <div class="char-card">
+            <div class="char-initial">V</div>
+            <div class="char-card-name">Javier Álvaro Vega</div>
+            <div class="char-card-role">El Asesino — Esposo</div>
+            <div class="char-card-text">Esposo de Petrona. La atrastrró a la rambla con el pretexto de ir a pescar. La golpeó con un trozo de hierro y la degolló con una navaja. Huyó a Brasil. Forjó cartas falsas firmadas por la víctima. Fue capturado 50 días después.</div>
+          </div>
+          <div class="char-card">
+            <div class="char-initial">F</div>
+            <div class="char-card-name">María Angélica Ferraris</div>
+            <div class="char-card-role">La Amante</div>
+            <div class="char-card-text">Huyó a Brasil junto a Vega. Dato escalofriante: había estado entre la multitud que desfiló ante el cadáver en la morgue sin saber quién era la muerta. Fue internada en el Asilo del Buen Pastor tras su detención.</div>
+          </div>
+        </div>
+        <div class="col-2" style="margin-top:16px;">
+          <div class="char-card">
+            <div class="char-initial">H</div>
+            <div class="char-card-name">Comisario Tácito Herrera</div>
+            <div class="char-card-role">El Investigador</div>
+            <div class="char-card-text">Jefe de Investigaciones de la Policía de Montevideo. Ideó la estrategia de la muñeca de cera. Los diarios de la época describían sus "majestuosos bigotes" que "perdían su línea de mosquetero" tras cada pista fallida. Un detective de la vieja escuela que resolvió lo imposible con creatividad.</div>
+          </div>
+          <div class="char-card">
+            <div class="char-initial">M</div>
+            <div class="char-card-name">Ramón Martínez</div>
+            <div class="char-card-role">El "Sobrino"</div>
+            <div class="char-card-text">Acompañó a Vega y Ferraris en la fuga a Brasil. Identificado como "sobrino" de Vega, aunque la relación real era ambigua. Ingresó junto a Vega a la Cárcel de Miguelete el 23 de junio de 1923. Su papel exacto en el crimen nunca quedó del todo claro.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">VI</span>
+  </section>
+
+  <!-- ===== SLIDE 6: EL CRIMEN ===== -->
+  <section class="slide slide-paper" id="slide-6">
+    <div class="slide-inner">
+      <div class="newspaper">
+        <div class="article-number">VI</div>
+        <div class="section-tag">La Reconstrucción — Confesión de Vega</div>
+        <h2 class="article-headline">Cómo Ocurrió<br><span class="article-headline-red">El Crimen</span></h2>
+        <hr class="article-rule">
+        <hr class="article-rule-thin">
+        <div class="article-dateline">28 de Abril de 1923 — Desde las 18:00 horas</div>
+
+        <div class="timeline" style="margin-top: 20px;">
+          <div class="timeline-item">
+            <div class="timeline-date">18:00 hrs — Esquina de Río Branco y Uruguay</div>
+            <div class="timeline-text">Vega se encuentra con Petrona. Le propone ir a pescar a la rambla. Ella acepta. Toman el tranvía de la línea <em>La Transatlántica</em> hacia el Parque Rodó. Vega lleva equipos de pesca como pretexto... y otras cosas escondidas entre sus ropas.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Noche — Las rocas de la Rambla Wilson</div>
+            <div class="timeline-text">Llegan a las canteras, más allá del rompeolas. Vega tira la línea de pesca "sin ganas". Se sientan de frente al mar. Comienza una discusión intensa. Las palabras se vuelven más duras. Vega amenaza con dejarla sola.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Noche — El ataque</div>
+            <div class="timeline-text">Vega saca de entre sus ropas <strong>un trozo de hierro</strong> y golpea a Petrona repetidamente en la cabeza. Ella cae entre las rocas. Entonces saca una <strong>navaja de afeitar</strong> y le corta el cuello. El tajo mide más de 10 centímetros. Arroja ambas armas al mar.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Las horas siguientes — La fuga</div>
+            <div class="timeline-text">Vega abandona el cuerpo entre las rocas y huye. Junto a Ferraris y Martínez, cruza la frontera hacia Brasil. Para hacerlo, <em>usa la identidad de la propia víctima</em>. Parte hacia Santos, en el estado de São Paulo.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">10 de Mayo — La trampa de las cartas</div>
+            <div class="timeline-text">Vega forja una carta, firmada con el nombre de Petrona, dirigida a la madre de la víctima en Buenos Aires. En ella, la "Petrona" dice estar bien y con su esposo en Brasil. La madre recibe la carta y cree que su hija vive.</div>
+          </div>
+        </div>
+
+        <div class="evidence-box" style="margin-top:20px;">
+          <div class="evidence-label">El Detalle que lo Delató</div>
+          <div class="evidence-text">Cuando los investigadores contactaron a la madre de Petrona en Buenos Aires para comunicarle la muerte de su hija, la madre respondió desconcertada: <em>acababa de recibir una carta fechada el 10 de mayo firmada por "Petrona"</em>, diciendo que estaba bien en Brasil. Las cartas falsas revelaron que el asesino seguía vivo, seguía actuando... y los investigadores sabían ahora dónde buscar.</div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">VII</span>
+  </section>
+
+  <!-- ===== SLIDE 7: LA FUGA ===== -->
+  <section class="slide slide-paper" id="slide-7">
+    <div class="slide-inner">
+      <div class="newspaper">
+        <div class="article-number">VII</div>
+        <div class="section-tag">La Fuga — Abril a Junio 1923</div>
+        <h2 class="article-headline">50 Días en Santos:<br><span class="article-headline-red">El Asesino Escondido</span><br>en Brasil</h2>
+        <hr class="article-rule">
+        <hr class="article-rule-thin">
+
+        <div class="col-2">
+          <div class="article-body">
+            <p class="dropcap">MIENTRAS Montevideo entera se preguntaba quién era la mujer degollada, Javier Vega vivía en la ciudad brasileña de Santos junto a su amante Ferraris y el "sobrino" Martínez.</p>
+            <p>Había cruzado la frontera usando la identidad de Petrona. En la época, los controles fronterizos eran laxos y podían evadirse con documentación simple. <em>El asesino literalmente encarnó a su víctima para escapar.</em></p>
+            <p>Desde Santos, mantuvo una correspondencia falsa: cartas escritas en nombre de Petrona, enviadas a su madre en Buenos Aires, simulando que la mujer vivía y estaba bien.</p>
+            <p>Era un plan meticuloso. Pero tenía una falla: <strong>la madre de Petrona no sabía que su hija había muerto</strong>. Cuando los investigadores la contactaron, ella reveló las cartas. Y las cartas revelaron el paradero.</p>
+          </div>
+          <div>
+            <div class="photo-box">
+              <div class="photo-area" style="height:180px;">
+                <svg class="scene-svg" viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Mapa simple Uruguay-Argentina-Brasil -->
+                  <rect width="280" height="170" fill="#c0b090"/>
+                  <!-- Mar Océano -->
+                  <rect x="160" y="0" width="120" height="170" fill="#a08860" opacity="0.4"/>
+                  <!-- Contorno simplificado Uruguay -->
+                  <path d="M90 120 Q100 100 110 80 Q120 60 130 50 Q140 45 145 55 Q155 70 158 90 Q160 110 155 130 Q145 145 130 150 Q110 150 95 140 Z" fill="#8a7850" opacity="0.7" stroke="#5a3a1a" stroke-width="1.5"/>
+                  <!-- Montevideo punto -->
+                  <circle cx="120" cy="135" r="5" fill="#7a1c1c"/>
+                  <text x="98" y="152" font-family="serif" font-size="9" fill="#3a2010" font-style="italic">Montevideo</text>
+                  <!-- Argentina simplified -->
+                  <path d="M20 60 Q50 50 85 60 Q90 80 90 120 Q70 145 50 150 Q25 145 15 120 Q10 90 20 60Z" fill="#7a6840" opacity="0.6" stroke="#5a3a1a" stroke-width="1"/>
+                  <!-- Buenos Aires -->
+                  <circle cx="75" cy="135" r="4" fill="#5a4020"/>
+                  <text x="38" y="150" font-family="serif" font-size="8" fill="#3a2010" font-style="italic">Bs. Aires</text>
+                  <!-- Brasil simplified -->
+                  <path d="M148 0 Q180 10 210 30 Q240 50 250 80 Q245 110 230 130 Q200 150 170 155 Q158 140 155 120 Q158 90 155 70 Q152 50 148 30 Z" fill="#9a8860" opacity="0.6" stroke="#5a3a1a" stroke-width="1"/>
+                  <!-- Santos -->
+                  <circle cx="210" cy="100" r="5" fill="#7a1c1c"/>
+                  <text x="215" y="98" font-family="serif" font-size="9" fill="#3a2010" font-style="italic">Santos</text>
+                  <!-- Línea de fuga -->
+                  <path d="M120 135 Q145 120 168 110 Q190 105 210 100" stroke="#7a1c1c" stroke-width="1.5" stroke-dasharray="4,3" fill="none" opacity="0.8"/>
+                  <!-- Flechita -->
+                  <polygon points="208,97 215,100 208,103" fill="#7a1c1c" opacity="0.8"/>
+                  <!-- Barco -->
+                  <text x="155" y="82" font-family="serif" font-size="8" fill="#5a3a1a" transform="rotate(-20,155,82)">⛵</text>
+                  <!-- Vapor Balmes -->
+                  <path d="M120 135 Q130 140 142 142 Q155 143 162 138 Q168 125 165 115" stroke="#5a3a1a" stroke-width="1" stroke-dasharray="3,2" fill="none" opacity="0.5"/>
+                  <text x="108" y="170" font-family="serif" font-size="7" fill="#5a3a1a" font-style="italic">Ruta del Vapor Balmes</text>
+                </svg>
+              </div>
+              <div class="photo-caption">Ruta de fuga de Javier Vega: Montevideo → Santos, Brasil.<br>Regreso en el Vapor <em>Balmes</em>, 18 de junio de 1923.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">VIII</span>
+  </section>
+
+  <!-- ===== SLIDE 8: EL REGRESO ===== -->
+  <section class="slide slide-paper" id="slide-8">
+    <div class="slide-inner">
+      <div class="newspaper">
+        <div class="stain" style="width:180px;height:180px;bottom:10px;right:10px;"></div>
+        <div class="article-number">VIII</div>
+        <div class="section-tag">18 de Junio de 1923 — El Desenlace</div>
+        <h2 class="article-headline"><span class="article-headline-red">Todo Montevideo</span><br>en el Puerto:<br>El Vapor Balmes</h2>
+        <hr class="article-rule">
+        <hr class="article-rule-thin">
+        <div class="article-dateline">Puerto de Montevideo — 18 de Junio de 1923 — Día 50</div>
+
+        <div class="col-2">
+          <div>
+            <div class="photo-box">
+              <div class="photo-area" style="height:200px;">
+                <svg class="scene-svg" viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="300" height="190" fill="#c0b088"/>
+                  <!-- Agua -->
+                  <rect y="120" width="300" height="70" fill="#a08860" opacity="0.5"/>
+                  <path d="M0 122 Q30 118 60 122 Q90 126 120 121 Q150 117 180 122 Q210 126 240 120 Q270 117 300 121 L300 190 L0 190Z" fill="#8a7248" opacity="0.3"/>
+                  <!-- Vapor Balmes -->
+                  <rect x="80" y="70" width="140" height="55" rx="3" fill="#5a4020" opacity="0.8"/>
+                  <!-- Chimeneas -->
+                  <rect x="110" y="40" width="14" height="34" rx="2" fill="#4a3010"/>
+                  <rect x="135" y="35" width="14" height="38" rx="2" fill="#4a3010"/>
+                  <!-- Humo -->
+                  <ellipse cx="117" cy="36" rx="10" ry="6" fill="#9a8060" opacity="0.5"/>
+                  <ellipse cx="120" cy="28" rx="8" ry="5" fill="#9a8060" opacity="0.35"/>
+                  <ellipse cx="142" cy="30" rx="10" ry="6" fill="#9a8060" opacity="0.4"/>
+                  <ellipse cx="148" cy="22" rx="8" ry="5" fill="#9a8060" opacity="0.25"/>
+                  <!-- Mástil -->
+                  <line x1="190" y1="25" x2="190" y2="72" stroke="#3a2010" stroke-width="2"/>
+                  <!-- Ventanas -->
+                  <rect x="90" y="80" width="8" height="6" rx="1" fill="#c8a860" opacity="0.6"/>
+                  <rect x="105" y="80" width="8" height="6" rx="1" fill="#c8a860" opacity="0.6"/>
+                  <rect x="145" y="80" width="8" height="6" rx="1" fill="#c8a860" opacity="0.6"/>
+                  <rect x="162" y="80" width="8" height="6" rx="1" fill="#c8a860" opacity="0.6"/>
+                  <!-- Pasarela/planchada -->
+                  <line x1="80" y1="125" x2="50" y2="140" stroke="#4a2a10" stroke-width="3" opacity="0.8"/>
+                  <!-- Figuras esposadas bajando -->
+                  <circle cx="62" cy="133" r="5" fill="#3a2010"/>
+                  <rect x="58" y="138" width="8" height="12" rx="1" fill="#3a2010"/>
+                  <!-- Esposas sugeridas -->
+                  <line x1="62" y1="143" x2="70" y2="141" stroke="#5a4020" stroke-width="1.5" opacity="0.7"/>
+                  <circle cx="72" cy="134" r="5" fill="#4a3010"/>
+                  <rect x="68" y="139" width="8" height="12" rx="1" fill="#4a3010"/>
+                  <!-- Multitud en el muelle -->
+                  <g opacity="0.6">
+                    <circle cx="20" cy="148" r="6" fill="#4a3010"/><rect x="15" y="154" width="10" height="14" rx="1" fill="#3a2008"/>
+                    <circle cx="35" cy="145" r="7" fill="#5a3a1a"/><rect x="30" y="152" width="10" height="16" rx="1" fill="#4a2a10"/>
+                    <circle cx="52" cy="148" r="5" fill="#4a3010"/><rect x="48" y="153" width="9" height="15" rx="1" fill="#3a2008"/>
+                    <circle cx="200" cy="147" r="6" fill="#4a3010"/><rect x="195" y="153" width="10" height="14" rx="1" fill="#3a2008"/>
+                    <circle cx="216" cy="144" r="7" fill="#5a3a1a"/><rect x="211" y="151" width="10" height="17" rx="1" fill="#4a2a10"/>
+                    <circle cx="232" cy="148" r="5" fill="#4a3010"/><rect x="228" y="153" width="9" height="15" rx="1" fill="#3a2008"/>
+                    <circle cx="248" cy="145" r="6" fill="#5a3a1a"/><rect x="243" y="151" width="10" height="16" rx="1" fill="#4a2a10"/>
+                    <circle cx="264" cy="148" r="5" fill="#4a3010"/><rect x="260" y="153" width="9" height="15" rx="1" fill="#3a2008"/>
+                    <circle cx="278" cy="144" r="7" fill="#5a3a1a"/><rect x="273" y="151" width="10" height="17" rx="1" fill="#4a2a10"/>
+                  </g>
+                  <!-- Periodistas con camaras -->
+                  <rect x="160" y="140" width="12" height="8" rx="1" fill="#3a2010" opacity="0.7"/>
+                  <circle cx="175" cy="138" r="4" fill="#2a1808" opacity="0.7"/>
+                </svg>
+              </div>
+              <div class="photo-caption">El Vapor <em>Balmes</em> llegando al Puerto de Montevideo,<br>con el asesino esposado a bordo. 18 de junio de 1923.</div>
+            </div>
+          </div>
+          <div class="article-body">
+            <p class="dropcap">CINCUENTA días después del crimen, toda Montevideo fue al puerto.</p>
+            <p>Una multitud se congregó en los muelles aguardando la llegada del vapor <em>Balmes</em> desde Santos. Policías, periodistas, fotógrafos, curiosos. La prensa cubría el evento como si fuera un espectáculo.</p>
+            <p>De la pasarela descendieron, esposados: <strong>Javier Álvaro Vega</strong> y <strong>María Angélica Ferraris</strong>.</p>
+            <p>El misterio que había paralizado a Montevideo durante casi dos meses tenía, al fin, un rostro.</p>
+            <div class="pullquote">
+              <p>"La historia de Petrona López Hormaeche, la mujer sin nombre, estaba completamente resuelta."</p>
+              <cite>— El País, 18 de junio de 1923 — Portada</cite>
+            </div>
+            <p>Vega confesó los hechos. Su defensa fue débil. La condena, inevitable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">IX</span>
+  </section>
+
+  <!-- ===== SLIDE 9: EL EPÍLOGO ===== -->
+  <section class="slide slide-paper" id="slide-9">
+    <div class="slide-inner">
+      <div class="newspaper">
+        <div class="article-number">IX</div>
+        <div class="section-tag">El Epílogo — 1923–1929</div>
+        <h2 class="article-headline">El Final Cinematográfico:<br><span class="article-headline-red">Un Balazo en Maciel</span></h2>
+        <hr class="article-rule">
+        <hr class="article-rule-thin">
+
+        <div class="col-2">
+          <div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">23 de Junio, 1923</div>
+                <div class="timeline-text">Javier Vega y Ramón Martínez ingresan a la <strong>Cárcel de Miguelete</strong>. María Angélica Ferraris es internada en el <strong>Asilo del Buen Pastor</strong>.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">Julio, 1923</div>
+                <div class="timeline-text">Las hermanas de Vega llegan a Montevideo y declaran en rueda de prensa: <em>"Nosotros y nuestros padres desconocíamos por completo que Javier hubiese contraído matrimonio con Petrona."</em></div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">1928</div>
+                <div class="timeline-text">Vega es condenado definitivamente y trasladado al <strong>Establecimiento de Reclusión de Punta Carretas</strong>.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">Comienzos de 1929</div>
+                <div class="timeline-text">Vega padece una afección dérmica y es trasladado periódicamente al <strong>Hospital Maciel</strong>. Sus llegadas —<em>"con pelos pintados de amarillo rabioso y ese andar mujeril"</em>— se convierten en espectáculo público. Los vecinos de la Aduana se agolpan para verlo.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">Jueves 5 de Abril, 1929</div>
+                <div class="timeline-text">Al salir del Hospital Maciel tras un control médico, Vega intenta escapar. Un custodio lo detiene con un <strong>certero balazo en la cabeza</strong>. Muere en el acto. La historia termina igual que la de su víctima: de forma violenta, pública, y sin retorno.</div>
+              </div>
+            </div>
+          </div>
+          <div class="article-body">
+            <div class="evidence-box" style="margin-bottom:16px;">
+              <div class="evidence-label">La Ironía Final</div>
+              <div class="evidence-text">Vega murió con violencia, en el mismo hospital donde había sido atendido públicamente como espectáculo. La misma prensa que lo había convertido en celebrity morbosa cubrió su muerte. Seis años de prisión. Un balazo. Y el caso cerrado para siempre.</div>
+            </div>
+            <p>La amante <strong>Ferraris</strong> fue puesta en libertad tras cumplir condena en el Asilo del Buen Pastor. No hay registro posterior de ella en la crónica policial uruguaya.</p>
+            <p>El "sobrino" <strong>Martínez</strong> también cumplió condena. Su papel exacto en el crimen nunca fue del todo aclarado.</p>
+            <div class="pullquote" style="margin-top:16px;">
+              <p>"Seis años después de matar a Petrona, Vega recibió el mismo final: violento, inesperado, definitivo."</p>
+              <cite>— Crónica policial</cite>
+            </div>
+            <p>El caso quedó inmortalizado en dos libros: <em>La historia del crimen en el Uruguay</em> (1944) y <em>Cosecha de Sangre</em>, de la historiadora Yvette Trochón (2008), además de la serie de podcast de Medios Públicos Uruguay (2021).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="slide-num">X</span>
+  </section>
+
+  <!-- ===== SLIDE 10: REFLEXIÓN FINAL ===== -->
+  <section class="slide slide-cover" id="slide-10">
+    <div class="dark-slide-bg"></div>
+    <div class="slide-inner dark-slide-content" style="max-width:750px; text-align:center;">
+
+      <div style="font-family:'IM Fell English',serif; font-size:11px; letter-spacing:5px; text-transform:uppercase; color:rgba(160,120,60,0.7); margin-bottom:30px;">La pregunta que queda</div>
+
+      <div class="final-quote">
+        "Petrona López pasó 38 días sin nombre en una morgue de Montevideo porque nadie la buscaba. Era invisible en vida. La pregunta no es solo quién la mató."
+      </div>
+
+      <hr class="final-rule">
+
+      <div style="font-family:'IM Fell English',serif; font-size:15px; color:rgba(200,170,120,0.8); line-height:1.8; max-width:580px; margin: 0 auto 30px; font-style:italic;">
+        ¿Cuántos crímenes similares quedaron sin resolver porque la víctima era igualmente invisible?
+        <br><br>
+        ¿Habría sido diferente si Petrona no fuera una empleada doméstica inmigrante?
+        <br><br>
+        El crimen fue cometido por el esposo. La violencia doméstica en 1923 no existía como categoría política. No tenía nombre. Igual que Petrona.
+      </div>
+
+      <hr class="final-rule">
+
+      <div class="ornament-border" style="color:rgba(160,120,60,0.4); font-size:24px; letter-spacing:16px; margin:20px 0;">✦ ✦ ✦</div>
+
+      <div style="font-family:'UnifrakturMaguntia',cursive; font-size:28px; color:rgba(210,180,120,0.3); margin-bottom:16px;">El Pueblo de Montevideo</div>
+      <div class="final-sub">La Degollada de la Rambla Wilson · Montevideo, 1923</div>
+      <div style="font-family:'IM Fell English',serif; font-size:11px; letter-spacing:2px; color:rgba(160,120,60,0.4); margin-top:10px;">Caso cerrado — 5 de Abril de 1929</div>
+
+    </div>
+    <span class="slide-num" style="color:rgba(160,120,60,0.4);">XI</span>
+  </section>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.nav-dot');
+
+  function scrollToSlide(index) {
+    slides[index].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+        const index = Array.from(slides).indexOf(entry.target);
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[index]) dots[index].classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  slides.forEach(slide => observer.observe(slide));
+
+  document.addEventListener('keydown', (e) => {
+    const active = Array.from(dots).findIndex(d => d.classList.contains('active'));
+    if (e.key === 'ArrowDown' && active < slides.length - 1) scrollToSlide(active + 1);
+    if (e.key === 'ArrowUp' && active > 0) scrollToSlide(active - 1);
+  });
+</script>
+</body>
+</html>
